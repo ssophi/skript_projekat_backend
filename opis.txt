@@ -1,0 +1,7 @@
+Želela bih da prijavim temu sajta za Teretanu/Wellness centar
+Sigurno bih imala entitete:
+Zaposleni, sa atributima: ime, prezime, tip, licenca, mail, adresa, i jedinstveni broj zaposlenog
+Član/korisnik sa atributima: ime, prezime, tip, broj članske karte, tip članarine
+Trening sa atributima: naziv/tip treninga, termine koje zauzima, treneri koji ga drže, prostorije koje zauzima
+Prostorija sa atributima: tip prostorije, ime sale/njen broj, površina i kapacitet
+Masaža sa atributima: tip, ko je izvodi, termin kad ima
