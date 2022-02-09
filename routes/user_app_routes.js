@@ -1,11 +1,13 @@
 import express from 'express'
 
 //importi svih controllera
-import { createUser } from '../controllers/user_controller.js'
+import { createUser, registerUser } from '../controllers/user_controller.js'
 import { getAllUser } from '../controllers/user_controller.js'
-import { getOneUser } from '../controllers/user_controller.js'
+// import { getOneUser } from '../controllers/user_controller.js'
 import { updateUser } from '../controllers/user_controller.js'
 import { deleteUser } from '../controllers/user_controller.js'
+import { getOneUserByUsername } from '../controllers/user_controller.js'
+import { loginUser } from '../controllers/user_controller.js'
 
 import { createZaposleni } from '../controllers/zaposleni_controller.js'
 import { getAllZaposleni } from '../controllers/zaposleni_controller.js'
@@ -141,7 +143,14 @@ router.delete('/masaza/:id', deleteMasaza)
 router.get('/user', getAllUser)
 
 //get single user
-router.get('/user/:id', getOneUser)
+// router.get('/user/:id', getOneUser)
+
+//get single user by username
+router.get('/user/:username', getOneUserByUsername)
+
+router.post('/user/login', loginUser)
+
+router.post('/user/register', registerUser)
 
 //create user
 router.post('/user', createUser)

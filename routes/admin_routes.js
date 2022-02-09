@@ -3,7 +3,7 @@ import express from 'express'
 //importi svih controllera
 import { createUser } from '../controllers/user_controller.js'
 import { getAllUser } from '../controllers/user_controller.js'
-import { getOneUser } from '../controllers/user_controller.js'
+// import { getOneUser } from '../controllers/user_controller.js'
 import { updateUser } from '../controllers/user_controller.js'
 import { deleteUser } from '../controllers/user_controller.js'
 
@@ -163,7 +163,7 @@ router.delete('/masaza/:id', deleteMasaza)
 router.get('/user', getAllUser)
 
 //get single user
-router.get('/user/:id', getOneUser)
+// router.get('/user/:id', getOneUser)
 
 //create user
 router.post('/user', createUser)

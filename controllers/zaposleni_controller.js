@@ -104,9 +104,6 @@ export const loginZaposleni = (req, res) => {
                             
         }
     });
-
-    
-    //dodati za token
 }
 
 //Get one zaposleni

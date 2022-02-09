@@ -4,7 +4,7 @@ import { createZaposleni } from '../controllers/zaposleni_controller.js'
 import { loginZaposleni } from '../controllers/zaposleni_controller.js'
 
 import { createUser } from '../controllers/user_controller.js'
-import { getOneUser } from '../controllers/user_controller.js'
+// import { getOneUser } from '../controllers/user_controller.js'
 //import router from './admin_routes.js'
 import Joi from 'joi'
 

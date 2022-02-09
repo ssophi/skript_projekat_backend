@@ -9,6 +9,9 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 
+import { sifruj } from './controllers/user_controller.js'
+
+
 //import Joi from 'joi'
 
 
@@ -25,12 +28,12 @@ app.use(express.static('static'));
 
 
 
-var corsOptions = {
-    origin: 'http://127.0.0.1:5000',
-    optionsSuccessStatus: 200
-}
+// var corsOptions = {
+//     origin: 'http://127.0.0.1:5000',
+//     optionsSuccessStatus: 200
+// }
 // var corsOptions_auth = {
-//     origin: 'http://127.0.0.1:9000',
+//     origin: 'http://127.0.0.1:8080',
 //     optionsSuccessStatus: 200
 // }
 
@@ -39,7 +42,7 @@ var corsOptions = {
 // app_auth.use(cors());
 app.use(cors())
 
-// app.use(express.json());
+app.use(express.json());
 // app.use(cors(corsOptions_auth));
 
 
@@ -87,22 +90,22 @@ function authToken(req, res, next) {
     });
 }
 
-app.get('/register', (req, res) => {
-    res.sendFile('register.html', { root: './static' });
-});
+// app.get('/register', (req, res) => {
+//     res.sendFile('register.html', { root: './static' });
+// });
 
-app.get('/login', (req, res) => {
-    res.sendFile('login.html', { root: './static' });
-});
+// app.get('/login', (req, res) => {
+//     res.sendFile('login.html', { root: './static' });
+// });
 
-app.get('/', authToken, (req, res) => {
-    res.sendFile('index.html', { root: './static' });
-});
+// app.get('/', authToken, (req, res) => {
+//     res.sendFile('index.html', { root: './static' });
+// });
 
 //resetSlobodno()
 
 
-// app.use(cors());
+app.use(cors());
 // app.use(cors());
 /*
 app_auth.post('/register', (req, res) => {
@@ -152,6 +155,8 @@ app_auth.post('/login', (req, res) => {
         .catch( err => res.status(500).json(err) );
 });
 */
+ 
+// sifruj();
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
 
 
