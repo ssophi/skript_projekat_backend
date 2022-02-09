@@ -4,6 +4,7 @@ import mysql from 'mysql'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import 'dotenv/config'
+import { response } from 'express';
 
 //konekcija sa bazom
 const pool = mysql.createPool({
@@ -17,8 +18,49 @@ const pool = mysql.createPool({
 //create rezervacija
 export const createRezervacija = (req, res) => {
     console.log(req.body)
-    let query = "insert into rezervacija (korisnikId, terminId) values (?, ?)";
-    let formated = mysql.format(query, [req.body.korisnikId, req.body.terminId]);
+    let query = "select id from user where username=?";
+    let formated = mysql.format(query, [req.body.username]);
+    let userId;
+    console.log(formated)
+    pool.query(formated, (err,rsp) => {
+        if (err)
+            res.status(500).send(err.sqlMessage);
+        else {
+            console.log(rsp)
+            userId=rsp[0].id;
+            console.log("id je ",userId)
+            
+            query = "insert into rezervacija (korisnikId, terminId) values (?, ?)";
+            formated = mysql.format(query, [userId, req.body.terminId]);
+            console.log(formated)
+
+            pool.query(formated, (err, response) => {
+                console.log(response)
+                if (err)
+                    res.status(500).send(err.sqlMessage);
+                else {
+                    // Ako nema greske dohvatimo kreirani objekat iz baze i posaljemo ga korisniku
+                    query = 'select * from rezervacija where id=?';
+                    formated = mysql.format(query, [response.insertId]);
+                    console.log(formated)
+
+                    pool.query(formated, (err, rows) => {
+                        if (err)
+                            res.status(500).send(err.sqlMessage);
+                        else{
+                            console.log("vraca ",rows[0])
+                            // res.send(rows[0]);
+                        }
+                            
+                    });
+                }
+            });
+        }
+
+    })
+
+    query = "insert into rezervacija (korisnikId, terminId) values (?, ?)";
+    formated = mysql.format(query, [req.body.korisnikId, req.body.terminId]);
 
     pool.query(formated, (err, response) => {
         if (err)

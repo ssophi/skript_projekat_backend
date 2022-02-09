@@ -43,6 +43,7 @@ import { getTerminMasazaPoDanu} from '../controllers/termin_controller.js'
 
 
 import jwt from 'jsonwebtoken'
+import { createRezervacija } from '../controllers/rezervacija_controller.js'
 
 const router = express.Router()
 
@@ -67,91 +68,26 @@ function authToken(req, res, next) {
     });
 }
 
-
-// router.use(authToken);
-
-//rute za zaposlene
-
-router.get('/zaposleni', getAllZaposleni)
-
-//get single zaposleni
-router.get('/zaposleni/:id', getOneZaposleni)
-
-//create zaposleni
-router.post('/zaposleni', createZaposleni)
-
-// //update zaposleni
-router.put('/zaposleni/:id', updateZaposleni)
-
-// //delete zaposleni
-router.delete('/zaposleni/:id', deleteZaposleni)
-
-
-//rute za prostorije
-
-router.get('/prostorije', getAllProstorije)
-
-//get single prostorije
-router.get('/prostorije/:id', getOneProstorije)
-
-//create prostorije
-router.post('/prostorije', createProstorije)
-
-//update prostorije
-router.put('/prostorije/:id', updateProstorije)
-
-//delete prostorije
-router.delete('/prostorije/:id', deleteProstorije)
-
-
 //rute za treninge
-
 router.get('/trening', getAllTrening)
-
-//get single trening
-router.get('/trening/:id', getOneTrening)
-
-//create trening
-router.post('/trening', createTrening)
-
-//update trening
-router.put('/trening/:id', updateTrening)
-
-//delete trening
-router.delete('/trening/:id', deleteTrening)
 
 
 //rute za masaze
-
 router.get('/masaza', getAllMasaza)
-
-//get single masaza
-router.get('/masaza/:id', getOneMasaza)
-
-//create masaza
-router.post('/masaza', createMasaza)
-
-//update masaza
-router.put('/masaza/:id', updateMasaza)
-
-//delete masaza
-router.delete('/masaza/:id', deleteMasaza)
 
 
 //rute za user-a
-
 router.get('/user', getAllUser)
-
-//get single user
-// router.get('/user/:id', getOneUser)
-
-//get single user by username
-router.get('/user/:username', getOneUserByUsername)
 
 router.post('/user/login', loginUser)
 
 router.post('/user/register', registerUser)
 
+
+router.use(authToken);
+
+//get single user by username
+router.get('/user/:username', getOneUserByUsername)
 //create user
 router.post('/user', createUser)
 
@@ -185,5 +121,7 @@ router.get('/termin/sm/:dan', getTerminMasazaPoDanu)
 
 //reset baze za slobodna mesta
 router.get('/termin/reset', resetSlobodno)
+
+router.post('/rezervacija', createRezervacija)
 
 export default router
